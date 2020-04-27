@@ -1,21 +1,21 @@
 version: '3.7'
 services:
-  database:
-    image: postgres:latest
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: postgres12345
-    volumes:
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-     - "5432:5432"
+  # database:
+  #   image: postgres:latest
+  #   restart: always
+  #   env_file: 
+  #     - database/database.env
+  #   volumes:
+  #     - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+  #   ports:
+  #    - "5432:5432"
   backend:
     build: ./backend
     restart: always
     ports:
       - "3000:3000"
-    depends_on: 
-      - database
+    # depends_on: 
+    #   - database
   frontend:
     restart: always
     build: ./frontend
