@@ -24,7 +24,7 @@ function App() {
     return <NumberPicker getData={getEmployees}/>
   }
   if(transition){
-    <div>Calculating...</div>
+    return <div>Calculating...</div>
   }
   return (
     <div>
