@@ -1,9 +1,10 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import NumberPicker from './components/NumberPicker'
 import Transition from './components/Transition'
+import GroupList from './components/GroupList'
 
-function App() {
+export default function App() {
   const [employees, setEmployees] = useState();
   const [start, setStart] = useState(true);
   const [transition, setTransition] = useState(false);
@@ -19,16 +20,11 @@ function App() {
 
   if(start){
     return <NumberPicker getData={getEmployees}/>
+  } else if(transition){
+    return <Transition>{console.log(employees)}</Transition>
+  } else {
+    return <GroupList employees={employees}/>
   }
-  if(transition){
-    return <Transition />
-  }
-  return (
-    <div>
-      {console.log(employees)}
-    </div>
-  );
+  ;
 
 }
-
-export default App;
