@@ -5,7 +5,7 @@ const Pool = require('pg').Pool
 
 const pool = new Pool({
   user: 'user',
-  host: 'database',
+  host: 'localhost',
   database: 'integrator',
   password: 'password12345',
   port: 5432,
@@ -46,10 +46,7 @@ function isGroupAvailable (group, size, employee) {
   if(chance) { 
     return group.length < size; 
   } else { 
-    return group.length < size && 
-              !isTheSameDepartment(group, employee) && 
-              !isTheSameDistrict(group, employee) && 
-              (!isTheSameAge(group, employee) || ageChance);
+    return group.length < size && !isTheSameDepartment(group, employee) && !isTheSameDistrict(group, employee) && (!isTheSameAge(group, employee) || ageChance);
   }
 }
 
@@ -57,23 +54,24 @@ function isGroupAvailable (group, size, employee) {
 let formGroups = (list, size) => {
   const numOfGroups = Math.ceil(list.length / size);
   let groups = new Array(numOfGroups).fill(new Array());
-  for(let i = 0; i < numOfGroups; ++i)
-  {
-    groups[i].push(list.pop());
-  }
+
+  let cantEnplace = [];
   while(list.length > 0) {
-    for(let i=0; i < numOfGroups; ++i){
-      console.log(i)
-      if(isGroupAvailable(groups[i], size, list[0])) 
+    let nextToPlace = list.shift();
+    let canBeEnplaced = false;
+    for(let group of groups)
+    {
+      if(isGroupAvailable(group, size, nextToPlace))
       {
-        groups[i].push(list.shift());
-      }
-      if(list.length == 0) {
+        group.push(nextToPlace);
+        canBeEnplaced = true;
         break;
       }
     }
-    if(list.length == 0) {
-      break;
+    if(!canBeEnplaced)
+    {
+      console.log(list.length)
+      cantEnplace.push(nextToPlace);
     }
   }
 
