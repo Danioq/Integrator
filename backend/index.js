@@ -5,7 +5,7 @@ const Pool = require('pg').Pool
 
 const pool = new Pool({
   user: 'user',
-  host: 'localhost',
+  host: 'database',
   database: 'integrator',
   password: 'password12345',
   port: 5432,
@@ -13,7 +13,6 @@ const pool = new Pool({
 
 
 let isTheSameDistrict = (group, employee) => {
-  console.log('district')
   for(let other of group)
   {
     if(other.district === employee.district) return true;
@@ -22,7 +21,6 @@ let isTheSameDistrict = (group, employee) => {
 }
 
 function isTheSameDepartment (group, employee) {
-  console.log('department')
   for(let other of group)
   {
     if(other.department === employee.department) return true;
@@ -31,7 +29,6 @@ function isTheSameDepartment (group, employee) {
 }
 
 function isTheSameAge (group, employee) {
-  console.log('age')
   for(let other of group)
   {
     if(other.age === employee.age) return true;
@@ -40,20 +37,16 @@ function isTheSameAge (group, employee) {
 }
 
 function isGroupAvailable (group, size, employee) {
-  let chance = Math.random() < 0.2;
-  let ageChance = Math.random() < 0.5;
-  console.log(group.length, group.length < size);
-  if(chance) { 
-    return group.length < size; 
-  } else { 
-    return group.length < size && !isTheSameDepartment(group, employee) && !isTheSameDistrict(group, employee) && (!isTheSameAge(group, employee) || ageChance);
-  }
+  let chance = Math.random() < 0.5;
+  return group.length < size && !isTheSameDepartment(group, employee) && !isTheSameDistrict(group, employee) && (!isTheSameAge(group, employee) || chance);
 }
-
-
 let formGroups = (list, size) => {
   const numOfGroups = Math.ceil(list.length / size);
-  let groups = new Array(numOfGroups).fill(new Array());
+
+  let groups = [];
+  for(let i = 0; i < numOfGroups;i++)
+  {groups.push([])};
+  // let groups = new Array(numOfGroups).fill(new Array());
 
   let cantEnplace = [];
   while(list.length > 0) {
@@ -70,11 +63,25 @@ let formGroups = (list, size) => {
     }
     if(!canBeEnplaced)
     {
-      console.log(list.length)
       cantEnplace.push(nextToPlace);
     }
   }
+  console.log(cantEnplace.length);
 
+  while(cantEnplace.length > 0)
+  {
+    let nextToPlace = cantEnplace.shift();
+    for(let group of groups)
+    {
+      if(group.length < size)
+      {
+        group.push(nextToPlace);
+        break;
+      }
+    }
+  }
+
+  console.log(cantEnplace.length);
   console.log('ended')
   return groups;
 }

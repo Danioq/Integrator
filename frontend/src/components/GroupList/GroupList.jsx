@@ -1,9 +1,17 @@
 import React from 'react';
-import Group from './Group';
-import {ListsContainer} from './StyledElements';
+import Group from 'components/Group';
+import {List, BackButton} from './StyledElements';
 
 export default function GroupList(props) {
-  return <ListsContainer>
-    {props.data.map(element => <Group data={element} />)}
-  </ListsContainer>
+  
+  let handleClick = () => {
+    window.location.reload(false);
+  }
+  
+  return <React.Fragment>
+    <BackButton onClick={handleClick}>Powrót</BackButton>
+    <List>
+      {props.data.map((element, index) => <li key={index} ><Group number={index} employees={element} /></li>)}
+    </List>
+  </React.Fragment>
 }

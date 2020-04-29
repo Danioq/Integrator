@@ -21,7 +21,12 @@ picture = iter(pictures)
 create_table = "CREATE TABLE EMPLOYEES(\n FIRST_NAME TEXT NOT NULL,\n LAST_NAME TEXT NOT NULL,\n AGE INT NOT NULL,\n DEPARTMENT TEXT NOT NULL,\n DISTRICT TEXT NOT NULL,\n PICTURE TEXT NOT NULL);\n"
 
 def gen_random_employee():
-  return "INSERT INTO EMPLOYEES VALUES (\n'{}',\n'{}',\n{},\n'{}',\n'{}',\n'{}');\n".format(choice(names).strip(), choice(last_names).strip(), randint(20,70), choice(departments), choice(districts), next(picture))
+  return "INSERT INTO EMPLOYEES VALUES (\n'{}',\n'{}',\n{},\n'{}',\n'{}',\n'{}');\n".format(choice(names).strip(),
+                                                                                            choice(last_names).strip(),
+                                                                                            randint(20,70),
+                                                                                            choice(departments),
+                                                                                            choice(districts),
+                                                                                            next(picture))
 
 with codecs.open('init.sql', 'w', 'utf-8') as file:
   file.write(create_table)
