@@ -40,13 +40,15 @@ function isGroupAvailable (group, size, employee) {
   let chance = Math.random() < 0.5;
   return group.length < size && !isTheSameDepartment(group, employee) && !isTheSameDistrict(group, employee) && (!isTheSameAge(group, employee) || chance);
 }
+
+
+
 let formGroups = (list, size) => {
   const numOfGroups = Math.ceil(list.length / size);
 
   let groups = [];
   for(let i = 0; i < numOfGroups;i++)
   {groups.push([])};
-  // let groups = new Array(numOfGroups).fill(new Array());
 
   let cantEnplace = [];
   while(list.length > 0) {

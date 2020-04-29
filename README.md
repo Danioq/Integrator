@@ -21,12 +21,13 @@ Application dividing employees into groups to start some relationships between t
   - Alpine-based node images
 - Docker-compose
 - Make
+# Requirements
+- Docker
+- Docker compose
+- Make
 
 # Running
  Simply run *make* to first run the project.
-
-## Build
-- make build
 
 ## Run
 - make run
