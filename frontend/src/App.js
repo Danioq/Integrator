@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
 import NumberPicker from './components/NumberPicker'
 import Transition from './components/Transition'
 import GroupList from './components/GroupList'
