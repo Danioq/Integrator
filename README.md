@@ -34,3 +34,6 @@ Application dividing employees into groups to start some relationships between t
 
 ## Stop
 - make stop
+
+# Effect 
+ You can look and use application on *localhost:8080* or *<host_ip>:8080*
