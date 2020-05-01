@@ -75,6 +75,8 @@ export let Label = styled.label.attrs(() => ({
   htmlFor: 'quantity',
 }))`
   font-size: 2.5em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
   color: #03c008;
 `;
 
@@ -83,6 +85,7 @@ export let Value = styled.p.attrs(() => ({
 }))`
     font-size: 2.5em;
     color: #03c008;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
 `;
 

@@ -13,10 +13,18 @@ export default function App() {
   async function getEmployees(quantity) {
     setStart(false);
     setTransition(true);
-    const uri = 'http://192.168.1.133:3000/employees/';
-    let response = await fetch(uri + quantity);
-    let data = await response.json();
-    setEmployees(data);
+    try {
+      let x = document.location.hostname;
+      console.log(x)
+      const uri = `http://${x}:3000/employees/`;
+      console.log(uri + quantity)
+      let response = await fetch(uri + quantity);
+      let data = await response.json();
+      setEmployees(data);
+    } 
+    catch(error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {setTransition(false);}, [employees])

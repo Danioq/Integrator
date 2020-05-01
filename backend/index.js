@@ -12,7 +12,7 @@ const pool = new Pool({
 })
 
 
-let isTheSameDistrict = (group, employee) => {
+const isTheSameDistrict = (group, employee) => {
   for(let other of group)
   {
     if(other.district === employee.district) return true;
@@ -20,7 +20,7 @@ let isTheSameDistrict = (group, employee) => {
   return false;
 }
 
-function isTheSameDepartment (group, employee) {
+const isTheSameDepartment = (group, employee) => {
   for(let other of group)
   {
     if(other.department === employee.department) return true;
@@ -28,7 +28,7 @@ function isTheSameDepartment (group, employee) {
   return false;
 }
 
-function isTheSameAge (group, employee) {
+const isTheSameAge = (group, employee) => {
   for(let other of group)
   {
     if(other.age === employee.age) return true;
@@ -36,72 +36,77 @@ function isTheSameAge (group, employee) {
   return false;
 }
 
-function isGroupAvailable (group, size, employee) {
-  let chance = Math.random() < 0.5;
-  return group.length < size && !isTheSameDepartment(group, employee) && !isTheSameDistrict(group, employee) && (!isTheSameAge(group, employee) || chance);
+const hasGroupFreePlace = (group, size) => {
+  return group.length < size;
+}
+
+const isGroupAvailable = (group, size, employee) => {
+  const chance = Math.random() < 0.5;
+  return hasGroupFreePlace(group, size) && !isTheSameDepartment(group, employee) && !isTheSameDistrict(group, employee) && (!isTheSameAge(group, employee) || chance);
+}
+
+const createEmptyGroups = (numOfGroups) => {
+  const groups = [];
+  for(let i = 0; i < numOfGroups;i++) {
+    groups.push([])
+  };
+  return groups
 }
 
 
 
-let formGroups = (list, size) => {
+const formGroups = (list, size) => {
   const numOfGroups = Math.ceil(list.length / size);
 
-  let groups = [];
-  for(let i = 0; i < numOfGroups;i++)
-  {groups.push([])};
+  const groups = createEmptyGroups(numOfGroups)
 
-  let cantEnplace = [];
+  const cantEnplace = [];
   while(list.length > 0) {
-    let nextToPlace = list.shift();
+    let nextToPlace = list.pop();
     let canBeEnplaced = false;
-    for(let group of groups)
-    {
-      if(isGroupAvailable(group, size, nextToPlace))
-      {
+    for(let group of groups) {
+      if(isGroupAvailable(group, size, nextToPlace)) {
         group.push(nextToPlace);
         canBeEnplaced = true;
         break;
       }
     }
-    if(!canBeEnplaced)
-    {
+    if(!canBeEnplaced) {
       cantEnplace.push(nextToPlace);
     }
   }
-  console.log(cantEnplace.length);
 
-  while(cantEnplace.length > 0)
-  {
-    let nextToPlace = cantEnplace.shift();
-    for(let group of groups)
-    {
-      if(group.length < size)
-      {
+  while(cantEnplace.length > 0) {
+    let nextToPlace = cantEnplace.pop();
+
+    for(let group of groups) {
+      if(hasGroupFreePlace(group, size)) {
         group.push(nextToPlace);
         break;
       }
     }
   }
 
-  console.log(cantEnplace.length);
-  console.log('ended')
   return groups;
 }
 
 const app = express();
 app.use(cors());
+
+
+
 app.get('/employees/:size', (request, response) => {
   pool.query('SELECT * FROM EMPLOYEES;', (error, results) => {
     if (error) {
       response.status(400).json({ info: `Error` });
-      throw error;
     }
     
-    let groups = formGroups(results.rows, request.params.size);
+    const groups = formGroups(results.rows, request.params.size);
+
     response.status(200).json(groups)
   })
 });
 
 const PORT = 3000;
-const HOST = '0.0.0.0';
+const HOST = 'backend';
 app.listen(PORT, HOST);

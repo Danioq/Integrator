@@ -27,12 +27,11 @@ services:
     build: ./frontend
     ports: 
       - "8080:8080"
-    labels: 
-      NAME: "integrator"
     depends_on: 
       - backend
+    links:
+      - 'backend'
     networks:
       - app-network
-networks: 
-  app-network: 
-    driver: bridge
+networks:
+  app-network:
