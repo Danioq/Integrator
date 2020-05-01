@@ -42,7 +42,11 @@ const hasGroupFreePlace = (group, size) => {
 
 const isGroupAvailable = (group, size, employee) => {
   const chance = Math.random() < 0.5;
-  return hasGroupFreePlace(group, size) && !isTheSameDepartment(group, employee) && !isTheSameDistrict(group, employee) && (!isTheSameAge(group, employee) || chance);
+
+  return (hasGroupFreePlace(group, size) && 
+          !isTheSameDepartment(group, employee) && 
+          !isTheSameDistrict(group, employee) && 
+          (!isTheSameAge(group, employee) || chance));
 }
 
 const createEmptyGroups = (numOfGroups) => {
@@ -92,8 +96,6 @@ const formGroups = (list, size) => {
 
 const app = express();
 app.use(cors());
-
-
 
 app.get('/employees/:size', (request, response) => {
   pool.query('SELECT * FROM EMPLOYEES;', (error, results) => {
