@@ -1,9 +1,9 @@
 import React from 'react';
-import Employee from 'components/Employee'
-import {GroupContainer, GroupHeader} from './StyledElements'
+import Employee from 'components/Employee';
+import {GroupContainer, GroupHeader} from './StyledElements';
+import PropTypes from 'prop-types';
 
-
-export default function Group(props){
+function Group(props){
   return <React.Fragment>
     <GroupContainer>
       <GroupHeader>Grupa {props.number}</GroupHeader>
@@ -11,3 +11,10 @@ export default function Group(props){
     </GroupContainer>
   </React.Fragment>;
 }
+
+Group.propTypes = {
+  number: PropTypes.number.isRequired,
+  employees: PropTypes.array.isRequired
+}
+
+export default Group;

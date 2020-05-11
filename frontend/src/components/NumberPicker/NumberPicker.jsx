@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import {Main, Label, Slider, Submit, Value, Form} from './StyledElements.js'
+import PropTypes from 'prop-types';
 
 
-export default function NumberPicker(props) {
+function NumberPicker(props) {
+
   const getData = props.getData;
 
   let actualizeValue = (event) => {
@@ -28,3 +30,9 @@ export default function NumberPicker(props) {
       </Form>
   </Main>;
 }
+
+NumberPicker.propTypes = {
+  getData: PropTypes.func.isRequired
+}
+
+export default NumberPicker;

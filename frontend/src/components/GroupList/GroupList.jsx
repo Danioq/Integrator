@@ -1,8 +1,9 @@
 import React from 'react';
 import Group from 'components/Group';
 import {List, BackButton} from './StyledElements';
+import PropTypes from 'prop-types';
 
-export default function GroupList(props) {
+function GroupList(props) {
   
   let handleClick = () => {
     window.location.reload(false);
@@ -15,3 +16,8 @@ export default function GroupList(props) {
     </List>
   </React.Fragment>
 }
+
+GroupList.propTypes = {
+  data: PropTypes.array.isRequired
+}
+export default GroupList;

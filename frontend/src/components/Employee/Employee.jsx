@@ -1,7 +1,8 @@
 import React from 'react';
 import {Card, Picture, Name, Age, District, Department} from './StyledElements'
+import PropTypes from 'prop-types';
 
-export default function Employee(props){
+function Employee(props){
   return<Card>
     <Picture src={props.employee.picture}/>
     <Name>{`${props.employee.first_name} ${props.employee.last_name}`}</Name>
@@ -10,3 +11,15 @@ export default function Employee(props){
     <Department>Dział <br/> {props.employee.department}</Department>
   </Card>;
 }
+
+Employee.propTypes = {
+  employee : PropTypes.shape({
+    picture: PropTypes.string.isRequired,
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    age: PropTypes.number.isRequired,
+    district: PropTypes.string.isRequired,
+    departmend: PropTypes.string.isRequired
+  })
+};
+export default Employee;
