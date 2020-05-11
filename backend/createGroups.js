@@ -27,12 +27,12 @@ const hasGroupFreePlace = (group, size) => {
 }
 
 const isGroupAvailable = (group, size, employee) => {
-    const chance = Math.random() < 0.5;
+    const chanceIfTheSameAge = Math.random() < 0.5;
 
     return (hasGroupFreePlace(group, size) && 
             !isTheSameDepartment(group, employee) && 
             !isTheSameDistrict(group, employee) && 
-            (!isTheSameAge(group, employee) || chance));
+            (!isTheSameAge(group, employee) || chanceIfTheSameAge));
 }
 
 const createEmptyGroups = (numOfGroups) => {

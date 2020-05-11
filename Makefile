@@ -1,6 +1,8 @@
 all: stop run
 
 run:
+	cp .env frontend
+	cp .env backend
 	docker-compose up --build -d
 
 stop:

@@ -4,20 +4,20 @@ services:
     image: postgres:alpine
     restart: always
     environment: 
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password12345
-      - POSTGRES_DB=integrator
+      - POSTGRES_USER={$POSTGRES_USER}
+      - POSTGRES_PASSWORD={$POSTGRES_PASSWORD}
+      - POSTGRES_DB={$POSTGRES_DB}
     volumes:
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-     - "5432:5432"
+     - "${DATABASE_PORT}:5432"
     networks: 
       - app-network
   backend:
     build: ./backend
     restart: always
     ports:
-      - "3000:3000"
+      - "${BACKEND_PORT}:3000"
     depends_on: 
       - database
     networks:
@@ -26,7 +26,7 @@ services:
     restart: always
     build: ./frontend
     ports: 
-      - "8080:8080"
+      - "${FRONTEND_PORT}:8080"
     depends_on: 
       - backend
     links:

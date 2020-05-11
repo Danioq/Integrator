@@ -14,9 +14,10 @@ export default function App() {
     setTransition(true);
 
     try {
-      let x = document.location.hostname;
-      const uri = `http://${x}:3000/employees/`;
-      let response = await fetch(uri + quantity);
+      let host = document.location.hostname;
+      const port = 3000;
+      const uri = `http://${host}:${port}/employees/${quantity}`;
+      let response = await fetch(uri);
       let data = await response.json();
       setEmployees(data);
     } 
