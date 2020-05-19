@@ -19,7 +19,7 @@ Employee.propTypes = {
     last_name: PropTypes.string.isRequired,
     age: PropTypes.number.isRequired,
     district: PropTypes.string.isRequired,
-    departmend: PropTypes.string.isRequired
+    department: PropTypes.string.isRequired
   })
 };
 export default Employee;

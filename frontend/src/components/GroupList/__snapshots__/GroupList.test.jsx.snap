@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GroupList component suite Render test 1`] = `
+Array [
+  <button
+    className="sc-fzozJi dtbgnq"
+    onClick={[Function]}
+  >
+    Powrót
+  </button>,
+  <ul
+    className="sc-AxmLO fEoOJk"
+  />,
+]
+`;

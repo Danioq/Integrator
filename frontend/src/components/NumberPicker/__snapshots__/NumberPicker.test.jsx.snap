@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NumberPicker component suite Render test 1`] = `
+<div
+  className="sc-AxgMl hMOoSi"
+>
+  <form
+    className="sc-AxhUy bRctOD"
+  >
+    <label
+      className="sc-AxiKw jLiVrU"
+      htmlFor="quantity"
+    >
+      Wielkość Grupy
+    </label>
+    <p
+      className="sc-AxhCb gQrvhH"
+      id="value"
+    />
+    <input
+      className="sc-AxirZ ciOAJL"
+      id="quantity"
+      max="5"
+      min="2"
+      name="quantiy"
+      onInput={[Function]}
+      type="range"
+    />
+    <input
+      className="sc-AxjAm buyOcO"
+      onClick={[Function]}
+      type="submit"
+      value="Wybierz"
+    />
+  </form>
+</div>
+`;

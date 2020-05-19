@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Employee component suite Render test 1`] = `
+<li
+  className="sc-AxjAm bltkeM"
+>
+  <img
+    className="sc-AxirZ oOxgC"
+    src="pic.png"
+  />
+  <p
+    className="sc-AxiKw bmJKWB"
+  >
+    xyz nowak
+  </p>
+  <p
+    className="sc-AxhCb jKUKVm"
+  >
+    Wiek
+    <br />
+    20
+  </p>
+  <p
+    className="sc-AxhUy cQPCGv"
+  >
+    Dzielnica
+    <br />
+     
+    krzyki
+  </p>
+  <p
+    className="sc-AxgMl lhRGCN"
+  >
+    Dział 
+    <br />
+     
+    IT
+  </p>
+</li>
+`;

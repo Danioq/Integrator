@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Group component suite Render test 1`] = `
+<ul
+  className="sc-AxheI kDXpPc"
+>
+  <p
+    className="sc-Axmtr gpYXoQ"
+  >
+    Grupa 
+    1
+  </p>
+</ul>
+`;

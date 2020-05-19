@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transition component suite Render test 1`] = `
+<p
+  className="sc-AxjAm gPICbf"
+>
+  Ładowanie danych...
+</p>
+`;
